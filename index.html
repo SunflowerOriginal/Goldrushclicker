@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Rush Clicker 💰</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f7d56b;
+        }
+        #goldButton {
+            font-size: 20px;
+            padding: 15px;
+            background-color: gold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .stat {
+            font-size: 22px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gold Rush Clicker 💰</h1>
+    <p class="stat">Gold: <span id="goldCount">0</span></p>
+    <button id="goldButton">Mine Gold ⛏️</button>
+
+    <script>
+        let gold = 0;
+
+        document.getElementById("goldButton").addEventListener("click", function() {
+            gold++;
+            document.getElementById("goldCount").innerText = gold;
+        });
+    </script>
+</body>
+</html>
