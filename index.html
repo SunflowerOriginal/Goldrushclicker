@@ -39,4 +39,55 @@
 <body>
     <h1>Gold Rush Clicker 💰⛏️</h1>
     <p class="stat">Gold: <span id="goldCount">0</span></p>
-    <p class="stat">
+    <p class="stat">Nuggets: <span id="nuggetCount">0</span></p>
+    <p class="stat">Current Tool: <span id="toolName">Hands (1 Gold per Click)</span></p>
+
+    <button id="goldButton">Mine Gold ⛏️</button>
+    <button id="upgradeButton">Buy Pickaxe (500 Gold) 🔨</button>
+    <button id="sellButton">Sell 1000 Gold for 1 Nugget 🏆</button>
+
+    <script>
+        let gold = 0;
+        let nuggets = 0;
+        let goldPerClick = 1;
+        let hasPickaxe = false;
+
+        function updateUI() {
+            document.getElementById("goldCount").innerText = gold;
+            document.getElementById("nuggetCount").innerText = nuggets;
+            document.getElementById("toolName").innerText = hasPickaxe ? "Pickaxe (5 Gold per Click)" : "Hands (1 Gold per Click)";
+        }
+
+        document.getElementById("goldButton").addEventListener("click", function() {
+            gold += goldPerClick;
+            updateUI();
+        });
+
+        document.getElementById("upgradeButton").addEventListener("click", function() {
+            if (gold >= 500 && !hasPickaxe) {
+                gold -= 500;
+                goldPerClick = 5;
+                hasPickaxe = true;
+                updateUI();
+                alert("You upgraded to a Pickaxe! You now mine 5 gold per click!");
+            } else if (hasPickaxe) {
+                alert("You already own a Pickaxe!");
+            } else {
+                alert("Not enough gold to buy a Pickaxe!");
+            }
+        });
+
+        document.getElementById("sellButton").addEventListener("click", function() {
+            if (gold >= 1000) {
+                gold -= 1000;
+                nuggets += 1;
+                updateUI();
+            } else {
+                alert("Not enough gold to trade for a Nugget!");
+            }
+        });
+
+        updateUI();
+    </script>
+</body>
+</html>
